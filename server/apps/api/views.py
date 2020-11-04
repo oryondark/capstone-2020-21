@@ -1012,7 +1012,7 @@ class ClothesSetReviewView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewS
         # Get Location.
         location = request.query_params.get('location')
         ismorning = request.query_params.get('ismorning')
-        weather_data = get_weather_forcast(location, ismorning)
+        weather_data = get_weather_forecast(location, ismorning)
         temperature = float(weather_data['T3H'])
         max_temp = float(weather_data['MAX'])
         min_temp = float(weather_data['MIN'])

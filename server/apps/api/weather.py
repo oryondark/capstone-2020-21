@@ -533,7 +533,7 @@ def getWCI(temperature, wind_velocity):
     return WCI
 
 
-def get_weather_forcast(location, ismorning):
+def get_weather_forecast(location, ismorning):
     """
     장소를 인자로 받아서 날씨예보 데이터 딕셔너리를 반환한다.
     location : "1" location index
