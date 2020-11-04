@@ -38,6 +38,17 @@
           </template>
         </b-button>
       </b-row>
+      <b-row align-h="center" v-if="!isGlobal">
+        <b-button class="ml-1 mb-3" variant="success" size="sm" @click="changeWeatherForecast(-1)">
+          현재 날씨
+        </b-button>
+        <b-button class="ml-1 mb-3" variant="success" size="sm" @click="changeWeatherForecast(1)">
+          오전 날씨
+        </b-button>
+        <b-button class="ml-1 mb-3" variant="success" size="sm" @click="changeWeatherForecast(0)">
+          오후 날씨
+        </b-button>
+      </b-row>
       <b-row cols=12 align-h="center" align-v="center" align-content="center">
         <b-col class="h5 text-md-right" cols=12 md=6>
           <b-img src="../assets/hot.png" width="30px"></b-img>
@@ -303,6 +314,39 @@ export default {
           this.isLoading = false
         })
     },
+    fetchWeatherForecast: function (config, ismorning) {
+      var vm = this
+      var url = consts.SERVER_BASE_URL + '/clothes-set-reviews/weather_forecast/'
+      url += '?location=' + this.weatherData.location.id + '&ismorning=' + ismorning
+      this.isLoading = true
+
+      axios.get(url, config)
+        .then((response) => {
+          const {
+            min_temperature,
+            max_temperature,
+            max_chill_temp,
+            min_chill_temp,
+            humidity,
+            wind_speed,
+            precipitation
+          } = response.data
+
+          vm.weatherData.minTemp = min_temperature
+          vm.weatherData.maxTemp = max_temperature
+          vm.weatherData.maxSenseTemp = max_chill_temp.toFixed(1)
+          vm.weatherData.minSenseTemp = min_chill_temp.toFixed(1)
+          vm.weatherData.humidity = humidity
+          vm.weatherData.windSpeed = wind_speed
+          vm.weatherData.precipitation = precipitation
+          this.isLoading = false
+        })
+        .catch((ex) => {
+          this.showAlert = true
+          this.alertMessage = '날씨정보를 받아오는데 실패했습니다. 오류가 계속 될 경우 관리자에게 알려주세요.'
+          this.isLoading = false
+        })
+    },
     toggleGlobal: function () {
       var token = window.localStorage.getItem('token')
       var config = {
@@ -319,6 +363,17 @@ export default {
         this.weatherData.location.id = '1689973'
         this.weatherData.location.name = 'San Francisco'
         this.fetchGlobalWeather()
+      }
+    },
+    changeWeatherForecast: function (ismorning) {
+      var token = window.localStorage.getItem('token')
+      var config = {
+        headers: { Authorization: `Bearer ${token}` }
+      }
+      if (ismorning === -1) {
+        this.fetchCurrentWeather(config)
+      } else {
+        this.fetchWeatherForecast(config, ismorning)
       }
     }
   },
