@@ -39,7 +39,7 @@ from .weather import (
     get_weather_between,
     get_weather_time_date,
     get_current_weather,
-    get_weather_forcast
+    get_weather_forecast
 )
 
 class UserView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewSet):
