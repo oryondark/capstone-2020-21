@@ -42,7 +42,6 @@
             </b-col>
           </b-row>
         </b-form-group>
-        
         <b-form-group label="한줄평 :" label-for="input-5" class="text-left text-top">
           <b-form-input id="input-5" v-model="form.comment"></b-form-input>
         </b-form-group>
