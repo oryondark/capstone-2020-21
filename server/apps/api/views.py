@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 import datetime
 from dateutil.parser import parse
-from django.db.models import Avg, Max, Min, Sum
+from django.db.models import Avg, Max, Min, Sum, Count
 from django.utils import timezone
 from filters.mixins import FiltersMixin
 import json
@@ -1072,6 +1072,45 @@ class ClothesSetReviewView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewS
                         'time' : time,
                         'level' : level,
                         })
+
+    
+    @action(detail=False, methods=['post'])
+    def today_cody_review(self, request, *args, **kwargs):
+        """
+        An endpoint where the today_cody_review is returned
+        """
+        cody_review_set = ClothesSetReview.objects.all()
+        reviews = cody_review_set.filter(owner__id = request.data["owner_id"], clothes_set__id = request.data["clothes_set_id"])
+       
+        if len(reviews) == 0:
+            predict = -2
+            
+            return Response({
+                'owner_id' : request.data["owner_id"],
+                'clothes_set_id' : request.data["clothes_set_id"],
+                'predict' : predict
+            })
+        
+        min_temp = float(request.data['minTemp'])
+        max_temp = float(request.data['maxTemp'])
+        wind_speed = float(request.data['windSpeed'])
+        humidity = float(request.data['humidity'])
+
+        weather_type = get_weather_class([max_temp, min_temp, wind_speed, humidity])
+        filtered_cody_review_set = reviews.filter(weather_type=weather_type)
+        review_count = filtered_cody_review_set.aggregate(Avg('review'))['review__avg']
+
+        try:
+            if int(review_count):
+                predict = review_count
+        except:
+            predict = -1
+
+        return Response({
+            'owner_id' : request.data["owner_id"],
+            'clothes_set_id' : request.data["clothes_set_id"],
+            'predict' : predict
+        })
 
 
 class ClothesSetReviewNestedView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewSet):
