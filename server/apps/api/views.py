@@ -1080,13 +1080,13 @@ class ClothesSetReviewView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewS
         An endpoint where the today_cody_review is returned
         """
         cody_review_set = ClothesSetReview.objects.all()
-        reviews = cody_review_set.filter(owner__id = request.data["owner_id"], clothes_set__id = request.data["clothes_set_id"])
+        reviews = cody_review_set.filter(owner__id = request.user.id, clothes_set__id = request.data["clothes_set_id"])
        
         if len(reviews) == 0:
             predict = -2
             
             return Response({
-                'owner_id' : request.data["owner_id"],
+                'owner_id' : request.user.id,
                 'clothes_set_id' : request.data["clothes_set_id"],
                 'predict' : predict
             })
@@ -1107,7 +1107,7 @@ class ClothesSetReviewView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewS
             predict = -1
 
         return Response({
-            'owner_id' : request.data["owner_id"],
+            'owner_id' : request.user.id,
             'clothes_set_id' : request.data["clothes_set_id"],
             'predict' : predict
         })
