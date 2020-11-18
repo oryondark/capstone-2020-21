@@ -48,13 +48,16 @@
                     </b-row>
                   </b-col>
                 </b-row>
-                <b-row class="mb-3">
+                <b-row class="mb-3" style="padding-top:20px;padding-bottom:20px">
                     <b-col cols="6">
                         <b-button pill class="w-75" @click="handleModify">수정하기</b-button>
                     </b-col>
                     <b-col cols="6">
                         <b-button pill class="w-75" @click="handleUpdate">확인하기</b-button>
                     </b-col>
+                </b-row>
+                <b-row>
+                  <ImageWeatherLevel :codyId="clothes_set_id"/>
                 </b-row>
             </b-col>
         </b-row>
@@ -77,9 +80,11 @@
 import axios from 'axios'
 import consts from '@/consts.js'
 import ClothesSetReviewCard from '@/components/cards/ClothesSetReviewCard.vue'
+import ImageWeatherLevel from '@/components/ImageWeatherLevel.vue'
 export default {
   components: {
-    ClothesSetReviewCard
+    ClothesSetReviewCard,
+    ImageWeatherLevel
   },
   data: function () {
     return {
