@@ -1073,7 +1073,7 @@ class ClothesSetReviewView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewS
                         'level' : level,
                         })
 
-    
+
     @action(detail=False, methods=['post'])
     def today_cody_review(self, request, *args, **kwargs):
         """
@@ -1081,16 +1081,16 @@ class ClothesSetReviewView(FiltersMixin, NestedViewSetMixin, viewsets.ModelViewS
         """
         cody_review_set = ClothesSetReview.objects.all()
         reviews = cody_review_set.filter(owner__id = request.user.id, clothes_set__id = request.data["clothes_set_id"])
-       
+
         if len(reviews) == 0:
             predict = -2
-            
+
             return Response({
                 'owner_id' : request.user.id,
                 'clothes_set_id' : request.data["clothes_set_id"],
                 'predict' : predict
             })
-        
+
         min_temp = float(request.data['minTemp'])
         max_temp = float(request.data['maxTemp'])
         wind_speed = float(request.data['windSpeed'])

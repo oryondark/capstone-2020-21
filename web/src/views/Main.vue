@@ -124,6 +124,11 @@ export default {
             vm.showAlert = true
             vm.alertMessage = '추천 카테고리를 받아오는데 실패했습니다. 오류가 계속되면 관리자에게 연락해주세요.'
           })
+
+        window.localStorage.setItem('localMaxTemp', vm.weatherProps.maxTemp)
+        window.localStorage.setItem('localMinTemp', vm.weatherProps.minTemp)
+        window.localStorage.setItem('localWindSpeed', vm.weatherProps.windSpeed)
+        window.localStorage.setItem('localHumidity', vm.weatherProps.humidity)
       }
     }
   },

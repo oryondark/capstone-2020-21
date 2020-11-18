@@ -27,6 +27,7 @@
                   <b-button pill class="w-75" @click="handleUpdate">확인하기</b-button>
                 </b-col>
               </b-row>
+
             </b-col>
         </b-row>
     </b-container>
