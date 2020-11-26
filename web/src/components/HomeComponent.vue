@@ -11,7 +11,6 @@
         <span class='text-primary'>O</span>
         <em>utfit </em><span class='text-primary'>T</span><em>oday </em>wea<span class='text-primary'>T</span><em>h</em><span class='text-primary'>E</span><em>r</em>
       </h3>
-      <a class="btn btn-primary btn-xl" @click="goAbout()">about</a>
     </div>
     <div class="overlay"></div>
   </header>
@@ -34,81 +33,8 @@
           the weather they are about to face.</span></p>
           <br/>
         <br/>
-          <a class="btn btn-dark btn-xl" @click="goDevelopers()">Developers</a>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- developers -->
-  <section class="content-section bg-primary text-white text-center" id="developers">
-    <div class="container">
-      <div class="content-section-heading">
-        <h3 class="text-secondary mb-0">Developers</h3>
-        <h2 class="mb-5">Who we are?</h2>
-      </div>
-      <div class="row">
-        <div class="col-12 col-md-6 col-lg-4">
-          <span class="service-icon rounded-circle mx-auto mb-3" style="padding:8px 10px 0px 0px;">
-            <img src="../assets/hh.png" class="img-circle" style="width: 100px; height: auto;" alt="현화">
-          </span>
-          <h5>
-            <strong>송현화</strong>
-          </h5>
-          <p class="text-faded mb-0">User Interface 디자인, 프론트엔드 개발</p>
-        <br/>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <span class="service-icon rounded-circle mx-auto mb-3" style="padding:3px 4px 0px 0px;">
-            <img src="../assets/jh.png" class="img-circle" style="width: 130px; height: auto;" alt="재호">
-          </span>
-          <h5>
-            <strong>이재호</strong>
-          </h5>
-          <p class="text-faded mb-0">AWS 연결, API 서버 개발</p>
-          <br/>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <span class="service-icon rounded-circle mx-auto mb-3" style="padding:3px 10px 0px 0px;">
-            <img src="../assets/yb.png" class="img-circle" style="width: 120px; height: auto;" alt="예빈">
-          </span>
-          <h5>
-            <strong>정예빈</strong>
-          </h5>
-          <p class="text-faded mb-0">User Interface 디자인, 프론트엔드 개발</p>
-          <br/>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <span class="service-icon rounded-circle mx-auto mb-3" style="padding:10px">
-            <img src="../assets/ms.png" class="img-circle" style="width: 125px; height: auto;" alt="민수">
-          </span>
-          <h5>
-            <strong>권민수</strong>
-          </h5>
-          <p class="text-faded mb-0">API 서버 개발, 옷 분류 모델 개발</p>
-          <br/>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <span class="service-icon rounded-circle mx-auto mb-3" style="padding:3px 4px 0px 0px;">
-            <img src="../assets/hb.png" class="img-circle" style="width: 120px; height: auto;" alt="효빈">
-          </span>
-          <h5>
-            <strong>황효빈</strong>
-          </h5>
-          <p class="text-faded mb-0">AWS 연결, 데이터베이스 구축, API 서버 개발</p>
-          <br/>
-        </div>
-        <div class="col-12 col-md-6 col-lg-4">
-          <span class="service-icon rounded-circle mx-auto mb-3" style="padding:18px">
-            <img src="../assets/gg.png" class="img-circle" style="width: 120px; height: auto;" alt="가구">
-          </span>
-          <h5>
-            <strong>주가구</strong>
-          </h5>
-          <p class="text-faded mb-0">유닛 테스팅, 로고 제작</p>
-          <br/>
-        </div>
-        </div>
     </div>
   </section>
   </div>
@@ -116,18 +42,7 @@
 </template>
 
 <script>
-
-export default {
-  name: 'HomeComponent',
-  methods: {
-    goAbout: function () {
-      document.getElementById('about').scrollIntoView()
-    },
-    goDevelopers: function () {
-      document.getElementById('developers').scrollIntoView()
-    }
-  }
-}
+export default {}
 </script>
 
 <style>
